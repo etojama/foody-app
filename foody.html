@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr {
+            background: linear-gradient(35deg, #13acac, #FFCCCC);
+            color: white;
+            text-align: center;
+        }
+        dt {
+            font-weight: bold;
+            background-color: pink;
+        }
+
+      .buttons:hover {
+          background-color: hsl(244, 79%, 32%);
+          color: white;
+          transform: scale(1.1);
+      }
+
+      tr:hover {
+          color: rgb(126, 13, 231);
+             }
+
+        img {
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 20px 29px rbga(0, 0, 0, 0.23);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <font size='8'>
+            <table width='800' border="2" cellspacing='4' cellpadding='4' align="center" id="orderForm">
+                <tr>
+                    <td>
+                        <img src="afang.jpg" width='200px' height="200px" alt="afang soup">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Customer Details</td>
+                </tr>
+                <tr>
+                    <td>Customer Name</td>
+                    <td><input type="text" id="txtName"></td>
+                </tr>
+                <tr>
+                    <td>Customer Mobile Number</td>
+                    <td><input type="text" id="txtMobile"></td>
+                </tr>
+                <tr>
+                    <td>Select a meal</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="moimoi.jpg" width="200px" height="200px" alt="moi moi">
+                        <br>
+                        <input type='radio' name='meal' id="optMoimoi"  value="Moimoi"> Moimoi(N500)
+                    </td>
+                    <td>
+                        <img src="jollofrice.jpg" width="200px" height="200px" alt="Jollof rice">
+                        <br>
+                        <input type="radio" name="meal" id="optJollofrice" value="Jollof rice"> Jollof Rice(N1200)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Select jara
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="strawbb.jpg" width="150px" height="150px" alt="Strawberry smoothie">
+                        <br>
+                        <input type='checkbox' id='optStrawbb' value='Strawberry smoothie'> Strawberry smoothie(N350)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="buttons" type="button" value="place order" onclick="placeOrder()">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <dl id="order summary" style="display: none;">
+                <h2>Order Summary</h2>
+                <dt>Customer Name</dt>
+                <dd id="lblName"></dd>
+                <dt>Mobile Number</dt>
+                <dd id="lblMobile"></dd>
+                <dt>Meal</dt>
+                <dd id="lblMeal"></dd>
+                <dt>Jara</dt>
+                <dd id="lblJara"></dd>
+                <dt>Total Bill Amount</dt>
+                <dd id="lblAmount"></dd>
+                <br>
+                <input class="buttons" type="button" value="Print Bill" onclick="window.print()">
+            </dl>
+    </div>
+
+<script>
+    function placeOrder(){
+        document.getElementById("order summary").style.display="block";
+        //document.getElementById("orderForm").style.display="none"
+
+         cusName = document.getElementById("txtName");
+         mobile = document.getElementById("txtMobile");
+         moimoi = document.getElementById("optMoimoi");
+         jollof = document.getElementById("optJollofrice");
+         strawb = document.getElementById("optStrawbb");
+
+        var mcost = 0
+        var acost = 0
+        var mname = ' ';
+        var aname = ' ';
+
+        if(moimoi.checked){
+            mcost = 500;
+            mname = moimoi.value;
+        }
+        if(jollof.checked){
+            mcost = 1200;
+            mname = jollof.value;
+        }
+        if(strawb.checked){
+            acost = 350;
+            mcost += acost;
+            aname += strawb.value+ "<br>";
+        }
+        document.getElementById("lblName").innerHTML = cusName.value;
+        document.getElementById("lblMobile").innerHTML = mobile.value;
+        document.getElementById("lblMeal").innerHTML = mname;
+        document.getElementById("lblJara").innerHTML = aname;
+        document.getElementById("lblAmount").innerHTML = mcost;
+    }
+</script>
+</body>
+</html>
